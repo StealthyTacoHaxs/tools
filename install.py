@@ -4,7 +4,7 @@ import os
 import sys
 import shutil
 import subprocess
-import ruamel.yaml as yaml # pip3 install ruamel.yaml
+import ruamel.yaml as yaml  # pip3 install ruamel.yaml
 import argparse
 
 parser = argparse.ArgumentParser(description="Install the dotfiles")
@@ -46,20 +46,34 @@ def parse_remote_packages_list():
     return remote_packages
 
 def install_packages():
+
     print("Installing python packages...")
     for package in PACKAGES:
         if not os.path.exists(PATH + "/submodules/" + package + "/setup.py"):
             continue
         print("Installing " + package + "...")
         subprocess.call(["pip3", "install", "-e", "submodules/" + package])
+
     print("Installing remote packages...")
     remote_packages = parse_remote_packages_list()
-    for package in remote_packages['apt']:
-        print("Installing " + package + "...")
-        subprocess.call(["sudo", "apt", "install", "-y", package])
-    for package in remote_packages['pip']:
-        print("Installing " + package + "...")
-        subprocess.call(["pip3", "install", package])
+    if shutil.which("apt"):
+        for package in remote_packages['apt']:
+            print("Installing " + package + "...")
+            subprocess.call(["sudo", "apt", "install", "-y", package])
+    else:
+        print("apt not found. Skipping apt packages.")
+
+    if shutil.which("pip3") or shutil.which("pip"):
+        if shutil.which("pip3"):
+            pip = "pip3"
+        else:
+            pip = "pip"
+        for package in remote_packages['pip']:
+            print("Installing " + package + "...")
+            subprocess.call([pip, "install", package])
+    else:
+        print("pip3 not found. Skipping pip packages.")
+
     shell = get_shell()
     if shell == "bash":
         with open(HOME + "/.bashrc", "a") as f:
@@ -83,7 +97,6 @@ def get_shell():
     shell = os.environ.get("SHELL")
     if shell is None:
         print("SHELL could not be determined.")
-        # allow the user to specify bash, fish, or zsh
         shell = input("Enter your shell (bash, fish, or zsh): ")
         if shell not in ["bash", "fish", "zsh"]:
             print("Invalid shell.")
