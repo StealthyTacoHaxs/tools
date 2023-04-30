@@ -116,7 +116,7 @@ def install_packages():
                 "\n")
     else:
         print("Invalid shell.")
-        sys.exit(1)
+        exit(1)
 
 def get_shell():
     shell = os.environ.get("SHELL")
@@ -125,7 +125,7 @@ def get_shell():
         shell = input("Enter your shell (bash, fish, or zsh): ")
         if shell not in ["bash", "fish", "zsh"]:
             print("Invalid shell.")
-            sys.exit(1)
+            exit(1)
     return shell
 
 
