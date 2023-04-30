@@ -72,7 +72,7 @@ def install_packages():
             print("Installing " + package + "...")
             subprocess.call([pip, "install", package])
     else:
-        print("pip3 not found. Skipping pip packages.")
+        print("pip not found. Skipping pip packages.")
 
     if shutil.which("pipx"):
         for package in remote_packages['pipx']:
