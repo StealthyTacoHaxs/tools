@@ -74,21 +74,44 @@ def install_packages():
     else:
         print("pip3 not found. Skipping pip packages.")
 
+    if shutil.which("pipx"):
+        for package in remote_packages['pipx']:
+            print("Installing " + package + "...")
+            subprocess.call(["pipx", "install", package])
+
     shell = get_shell()
     if shell == "bash":
         with open(HOME + "/.bashrc", "a") as f:
             f.write("\n# add python packages to path\n")
-            f.write("export PATH=$PATH:" + PYTHON_SITE_PACKAGES + "\n")
+            f.write(
+                "export PATH=$PATH:" +
+                PYTHON_SITE_PACKAGES +
+                ":" +
+                HOME +
+                "/.local/bin"
+                "\n")
     elif shell == "fish":
         if not os.path.exists(HOME + "/.config/fish"):
             os.makedirs(HOME + "/.config/fish", exist_ok=True)
         with open(HOME + "/.config/fish/config.fish", "a") as f:
             f.write("\n# add python packages to path\n")
-            f.write("set -x PATH $PATH " + PYTHON_SITE_PACKAGES + "\n")
+            f.write(
+                "set -x PATH $PATH " +
+                PYTHON_SITE_PACKAGES +
+                " " +
+                HOME +
+                "/.local/bin"
+                "\n")
     elif shell == "zsh":
         with open(HOME + "/.zshrc", "a") as f:
             f.write("\n# add python packages to path\n")
-            f.write("export PATH=$PATH:" + PYTHON_SITE_PACKAGES + "\n")
+            f.write(
+                "export PATH=$PATH:" +
+                PYTHON_SITE_PACKAGES +
+                ":" +
+                HOME +
+                "/.local/bin"
+                "\n")
     else:
         print("Invalid shell.")
         sys.exit(1)
