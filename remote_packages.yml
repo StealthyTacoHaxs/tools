@@ -1,7 +1,14 @@
 apt:
   - curl
   - git
+  - hexchat
+  - hydra # only on kali
   - nano
+  - smbmap # only on kali
 
 pip:
+  - pipx
   - ruamel.yaml
+
+pipx:
+  - git+https://github.com/Porchetta-Industries/CrackMapExec.git
