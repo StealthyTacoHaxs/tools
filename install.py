@@ -118,6 +118,14 @@ def install_packages():
         print("Invalid shell.")
         exit(1)
 
+    print("Finished installing packages.")
+    if shell == "bash":
+        print("Please run `source ~/.bashrc`.")
+    elif shell == "fish":
+        print("Please run `source ~/.config/fish/config.fish`.")
+    elif shell == "zsh":
+        print("Please run `source ~/.zshrc`.")
+
 def get_shell():
     shell = os.environ.get("SHELL")
     if shell is None:
