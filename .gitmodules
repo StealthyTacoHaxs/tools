@@ -1,0 +1,3 @@
+[submodule "submodules/dirsearch"]
+	path = submodules/dirsearch
+	url = git@github.com:StealthyTacoHaxs/dirsearch.git
