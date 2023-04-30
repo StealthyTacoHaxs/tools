@@ -4,6 +4,7 @@ apt:
   - hexchat
   - hydra # only on kali
   - nano
+  - netcat
   - smbmap # only on kali
 
 pip:
