@@ -1,3 +1,6 @@
 [submodule "submodules/dirsearch"]
 	path = submodules/dirsearch
 	url = git@github.com:StealthyTacoHaxs/dirsearch.git
+[submodule "submodules/wfuzz"]
+	path = submodules/wfuzz
+	url = git@github.com:StealthyTacoHaxs/wfuzz.git
