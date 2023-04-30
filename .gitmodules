@@ -1,9 +1,9 @@
 [submodule "submodules/dirsearch"]
 	path = submodules/dirsearch
-	url = git@github.com:StealthyTacoHaxs/dirsearch.git
+	url = https://github.com/StealthyTacoHaxs/dirsearch
 [submodule "submodules/wfuzz"]
 	path = submodules/wfuzz
-	url = git@github.com:StealthyTacoHaxs/wfuzz.git
+	url = https://github.com/StealthyTacoHaxs/wfuzz
 [submodule "submodules/impacket"]
 	path = submodules/impacket
-	url = git@github.com:fortra/impacket.git
+	url = https://github.com/fortra/impacket.git
