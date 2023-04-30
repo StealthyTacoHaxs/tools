@@ -4,3 +4,6 @@
 [submodule "submodules/wfuzz"]
 	path = submodules/wfuzz
 	url = git@github.com:StealthyTacoHaxs/wfuzz.git
+[submodule "submodules/impacket"]
+	path = submodules/impacket
+	url = git@github.com:fortra/impacket.git
