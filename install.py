@@ -47,13 +47,6 @@ def parse_remote_packages_list():
 
 def install_packages():
 
-    print("Installing python packages...")
-    for package in PACKAGES:
-        if not os.path.exists(PATH + "/submodules/" + package + "/setup.py"):
-            continue
-        print("Installing " + package + "...")
-        subprocess.call(["pip3", "install", "-e", "submodules/" + package])
-
     print("Installing remote packages...")
     remote_packages = parse_remote_packages_list()
     if shutil.which("apt"):
@@ -68,6 +61,13 @@ def install_packages():
             pip = "pip3"
         else:
             pip = "pip"
+        print("Installing python packages...")
+        for package in PACKAGES:
+            if not os.path.exists(PATH + "/submodules/" + package + "/setup.py"):
+                continue
+            print("Installing " + package + "...")
+            subprocess.call(["pip3", "install", "-e", "submodules/" + package])
+
         for package in remote_packages['pip']:
             print("Installing " + package + "...")
             subprocess.call([pip, "install", package])
