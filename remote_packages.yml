@@ -1,0 +1,7 @@
+apt:
+  - curl
+  - git
+  - nano
+
+pip:
+  - ruamel.yaml
