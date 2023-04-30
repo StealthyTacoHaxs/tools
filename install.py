@@ -78,6 +78,8 @@ def install_packages():
         for package in remote_packages['pipx']:
             print("Installing " + package + "...")
             subprocess.call(["pipx", "install", package])
+    else:
+        print("pipx not found. Skipping pipx packages.")
 
     shell = get_shell()
     if shell == "bash":
